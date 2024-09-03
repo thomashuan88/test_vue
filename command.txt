@@ -11,3 +11,6 @@ vue3 is CompositionAPI
 start vue3 with setup
 cannot use 'this' in setup() -- undefined
 
+-- install a vue plugin for script setup tag to tag the component name
+npm i vite-plugin-vue-setup-extend -D
+need to modify vite.config.ts
