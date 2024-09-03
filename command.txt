@@ -1,1 +1,6 @@
-npm install
+npm create vue@latest (create new project)
+npm install (gen node_modules)
+
+
+-- in Vite project, index.html is entry point
+-- use createApp to start instant
