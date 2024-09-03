@@ -1,33 +1,40 @@
 <template>
     <div class="person">
-        <h2>name: {{ name }}</h2>
-        <h2>age: {{ age }}</h2>
-        <button @click="chgName">change name</button>
-        <button @click="chgAge">change age</button>
-        <button @click="showContact">show contact</button>
+        <h2>A {{ car.brand }} car, price is {{ car.price }}</h2>
+        <button @click="chgPrice">change car price</button>
+        <h2>Game List:</h2>
+        <ul>
+            <li v-for="game in games" :key="game.id">{{ game.id }} - {{ game.name }}</li>
+        </ul>
+        <button @click="chgFirstGame">change firstgame</button>
     </div>
 </template>
 
-<script lang="ts" setup name="Person123">
-    import {ref} from 'vue'
+<script lang="ts" setup name="Person">
+    import {reactive} from 'vue'
 
-    let name = ref('bob')
-    let age = ref(20)
-    let tel = '123333333'
+    let car = reactive({
+        brand: 'bmw',
+        price: 100
+    })
 
-    function chgName() {
-        console.log('chgName')
-        name.value = 'jack' // like this , page not re-render
+    let games = reactive([
+        {
+            id: 'gg1',
+            name: 'lol',
+        },
+        {
+            id: 'gg2',
+            name: 'lol2',
+        }
+    ])
+
+    function chgPrice() {
+        car.price += 10
     }
 
-    function chgAge() {
-        console.log('chgAge')
-        age.value += 1
-    }
-
-    function showContact() {
-        console.log('showContact')
-        alert(tel)
+    function chgFirstGame() {
+        games[0].name = 'dota2'
     }
 </script>
 

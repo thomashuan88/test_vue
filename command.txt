@@ -16,5 +16,12 @@ npm i vite-plugin-vue-setup-extend -D
 need to modify vite.config.ts
 
 -- use ref to reflect variable at render
+import {ref} from vue
 let name = ref('jack')
 in function ==> name.value = 'bob'
+
+ref ==> for basic data type
+reactive ==> for object data type
+
+import {reactive} from vue
+let car = reactive({name:'bmw', price:100})
