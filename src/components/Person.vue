@@ -9,18 +9,20 @@
 </template>
 
 <script lang="ts" setup name="Person123">
-    let name = 'bob'
-    let age = 20
+    import {ref} from 'vue'
+
+    let name = ref('bob')
+    let age = ref(20)
     let tel = '123333333'
 
     function chgName() {
         console.log('chgName')
-        name = 'jack' // like this , page not re-render
+        name.value = 'jack' // like this , page not re-render
     }
 
     function chgAge() {
         console.log('chgAge')
-        age += 1
+        age.value += 1
     }
 
     function showContact() {

@@ -14,3 +14,7 @@ cannot use 'this' in setup() -- undefined
 -- install a vue plugin for script setup tag to tag the component name
 npm i vite-plugin-vue-setup-extend -D
 need to modify vite.config.ts
+
+-- use ref to reflect variable at render
+let name = ref('jack')
+in function ==> name.value = 'bob'
