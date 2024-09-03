@@ -32,7 +32,9 @@ export default {
             alert(tel)
         }
 
-        return {name, age, chgName, chgAge, showContact}
+        return {name, age, chgName, chgAge, showContact} // if not return , page not re-render
+        // return () => 'hello' // return can be a render function
+
     }
 }
 </script>
