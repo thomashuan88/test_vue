@@ -4,3 +4,10 @@ npm install (gen node_modules)
 
 -- in Vite project, index.html is entry point
 -- use createApp to start instant
+
+vue2 is OptionsAPI
+vue3 is CompositionAPI
+
+start vue3 with setup
+cannot use 'this' in setup() -- undefined
+
