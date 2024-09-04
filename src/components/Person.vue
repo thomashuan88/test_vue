@@ -1,51 +1,32 @@
 <template>
     <div class="person">
-        firstname: <input type="text" v-model="firstName"><br>
-        lastname: <input type="text" v-model="lastName"><br>
-        fullname: <span>{{fullName}}</span><br>
-        <button @click="chgFullname">change fullname</button>
+        <h2>sum: {{ sum }}</h2>
+        <button @click="chgSum">plus one</button>
     </div>
 </template>
 
-
-<!-- <script lang="ts"> // vue2
-  //  export default {
-   //     computed: {
-            
- //       }
-  //  }
-</script> -->
-
 <script lang="ts" setup name="Person">
-    import {ref, computed} from 'vue'
+    import {ref, watch} from 'vue'
 
-    let firstName = ref('hengchuan')
-    let lastName = ref('huan')
+    let sum = ref(0)
 
-    // like this computed is readonly
-    // let fullName = computed(() => {
-    //     console.log('computed') // just show once, if firstname or lastname not change
-    //     return (firstName.value.slice(0, 1).toUpperCase() + firstName.value.slice(1) + '-' + lastName.value)
-    // })
-
-    let fullName = computed({
-        get() {
-            console.log('get')
-            return (firstName.value.slice(0, 1).toUpperCase() + firstName.value.slice(1) + '-' + lastName.value)
-        },
-        set(value) {
-            console.log('set')
-            let arr = value.split('-')
-            firstName.value = arr[0]
-            lastName.value = arr[1]
-        }
-    })
-    
-    // [Vue warn] Write operation failed: computed value is readonly
-    function chgFullname() {
-        fullName.value = 'huan-hengchuan'
-        console.log(fullName)
+    function chgSum() {
+        sum.value += 1
     }
+
+    let i = 0
+
+    const stopWatch = watch(sum, (newValue, oldValue) => {
+        console.log(newValue, oldValue)
+        i += 1
+        if (newValue > 10) {
+            sum.value = 0
+        }
+        if (i > 20) {
+            stopWatch()
+        }
+        console.log(i)
+    })
 </script>
 
 <style scoped>

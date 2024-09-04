@@ -56,3 +56,11 @@ let fullName = computed({
         lastName.value = arr[1]
     }
 })
+
+-- 4 kinds of watch to monitor
+1. data defined by ref
+2. data defined by reactive
+3. value return from function (getter function)
+4. an array which content 1,2,3 above
+
+
