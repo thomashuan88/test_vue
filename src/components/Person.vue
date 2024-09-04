@@ -12,7 +12,7 @@
 <script lang="ts" setup name="Person">
     import {ref, reactive} from 'vue'
 
-    let car = reactive({
+    let car = ref({
         brand: 'bmw',
         price: 100
     })
@@ -20,13 +20,14 @@
     let sum = ref(0)
 
     function chgPrice() {
-        car.price += 10
+        car.value.price += 10
     }
 
     function chgCar() {
         // car = {brand:'benz', price:10} ** no change
         // car = reactive({brand:'benz', price:10})  ** no change
-        Object.assign(car, {brand: 'benz', price: 10})
+        // Object.assign(car, {brand: 'benz', price: 10}) for reactive
+        car.value = {brand: 'benz', price: 10}
     }
 
     function addSum() {

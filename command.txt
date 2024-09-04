@@ -30,3 +30,6 @@ ref ==> can define basic data type, object data type
 reactive ==> just define object data type
 
 -- when using ref for object, the value part still using reactive(Proxy object)
+
+-- when reactive want to replace whole object
+Object.assign(car, {brand:'benz',price:10})
