@@ -1,33 +1,16 @@
 <template>
     <div class="person">
-        <h2>name : {{ name }}</h2>
-        <h2>age : {{ age }}, nl : {{ nl }}</h2>
-        <button @click="chgName">change name</button>
-        <button @click="chgAge">change age</button>
+        firstname: <input type="text" v-model="firtName"><br>
+        lastname: <input type="text" v-model="lastName"><br>
+        fullname: <span>{{firtName}}-{{lastName}}</span><br>
     </div>
 </template>
 
 <script lang="ts" setup name="Person">
-    import {reactive, toRefs, toRef} from 'vue'
+    import {ref} from 'vue'
 
-    // data
-    let person = reactive({
-        name: 'bob',
-        age: 20
-    })
-
-    let {name, age} = toRefs(person)  // converto to more then one ref
-
-    let nl = toRef(person,'age')  // just extract age from person, nl => ObjectRefImpl {value: 20}
-
-    // methods
-    function chgName() {
-        name.value += '~'
-    }
-
-    function chgAge() {
-        age.value += 1
-    }
+    let firtName = ref('hengchuan')
+    let lastName = ref('huan')
 </script>
 
 <style scoped>

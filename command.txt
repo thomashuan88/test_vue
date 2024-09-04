@@ -35,3 +35,6 @@ reactive ==> just define object data type
 Object.assign(car, {brand:'benz',price:10})
 
 toRefs return => ObjectRefImpl
+
+v-bind:value ==> one way binding (data to page)
+v-model:value | v-model ==> two way binding (data to page & page to data)
