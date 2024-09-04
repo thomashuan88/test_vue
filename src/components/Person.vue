@@ -1,44 +1,29 @@
 <template>
     <div class="person">
-        <h2>when temprature reach 60 °C, and level 80cm, send alert</h2>
-        <h2>current temprature: {{ temp }} °C</h2>
-        <h2>current level: {{ level }} cm</h2>
-        <button @click="chgTemp">change temprature + 10</button>
-        <button @click="chgLevel">change level + 10</button>
+        <h1>china</h1>
+        <h2 ref="title2">hongkong</h2>
+        <h3>taiwan</h3>
+        <button @click="showme">showme</button>
     </div>
 </template>
 
 <script lang="ts" setup name="Person">
-    import {ref, watch, watchEffect} from 'vue'
+    import {ref, defineExpose} from 'vue'
 
-    let temp = ref(10)
-    let level = ref(0)
+    let a = ref(0)
+    let b = ref(1)
+    let c = ref(2)
 
-    function chgTemp() {
-        temp.value += 10
+    // use for tag tag the html element
+    let title2 = ref(null)
+
+    function showme() {
+        console.log(title2.value.textContent)
     }
 
-    function chgLevel() {
-        level.value += 10
-    }
-
-    // using watch to monitor
-    // watch([temp, level], (val) => {
-    //     let [newtemp, newheight] = val
-    //     console.log(newtemp, newheight)
-
-    //     if (newtemp >= 60 || newheight >= 80) {
-    //         alert('danger level!')
-    //     }
-    // })
-
-    watchEffect(() => {
-        console.log(temp.value, level.value)
-        if (temp.value >= 60 || level.value >= 80) {
-            alert('danger level!')
-        }
+    defineExpose({
+        a,b,c
     })
-
 </script>
 
 <style scoped>

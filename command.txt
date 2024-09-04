@@ -66,3 +66,4 @@ let fullName = computed({
 
 -- getter function means this function can return a value
 
+<style scoped> those css just use at current vue file

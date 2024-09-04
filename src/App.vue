@@ -1,14 +1,17 @@
 <template>
-    <Person />
+    <Person ref="ren" />
+    <button @click="clickme">clickme</button>
 </template>
 
-<script lang="ts">
+<script lang="ts" setup name="App">
+    import {ref} from 'vue'
     import Person from './components/Person.vue'
-    export default {
-        name: 'App',
-        components: { //register components
-            Person
-        }
+
+    let ren = ref()
+
+    function clickme() {
+        console.log(ren.value)
     }
+    
 </script>
 
