@@ -11,14 +11,14 @@
 </template>
 
 <script lang="ts" setup name="Person">
-    import {reactive} from 'vue'
+    import {ref} from 'vue'
 
-    let car = reactive({
+    let car = ref({
         brand: 'bmw',
         price: 100
     })
 
-    let games = reactive([
+    let games = ref([
         {
             id: 'gg1',
             name: 'lol',
@@ -30,11 +30,11 @@
     ])
 
     function chgPrice() {
-        car.price += 10
+        car.value.price += 10
     }
 
     function chgFirstGame() {
-        games[0].name = 'dota2'
+        games.value[0].name = 'dota2'
     }
 </script>
 

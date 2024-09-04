@@ -25,3 +25,6 @@ reactive ==> for object data type
 
 import {reactive} from vue
 let car = reactive({name:'bmw', price:100})
+
+ref ==> can define basic data type, object data type
+reactive ==> just define object data type
