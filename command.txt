@@ -38,3 +38,21 @@ toRefs return => ObjectRefImpl
 
 v-bind:value ==> one way binding (data to page)
 v-model:value | v-model ==> two way binding (data to page & page to data)
+
+-- about computed, have cache, no change no redo, if use func will redo everytime
+import { computed } from vue
+let fullName = computed(() => firstName.value.slice(0, 1).toUpperCase() + firstName.value.slice(1) + '-' + lastName.value)
+
+-- computed can read/write
+let fullName = computed({
+    get() {
+        console.log('get')
+        return (firstName.value.slice(0, 1).toUpperCase() + firstName.value.slice(1) + '-' + lastName.value)
+    },
+    set(value) {
+        console.log('set')
+        let arr = value.split('-')
+        firstName.value = arr[0]
+        lastName.value = arr[1]
+    }
+})
