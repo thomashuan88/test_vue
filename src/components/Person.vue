@@ -8,19 +8,23 @@
 </template>
 
 <script lang="ts" setup name="Person">
-    import {ref} from 'vue'
+    import {reactive, toRefs} from 'vue'
 
-    let person = ref({
+    // data
+    let person = reactive({
         name: 'bob',
         age: 20
     })
 
+    let {name, age} = toRefs(person)  // converto to more then one ref
+
+    // methods
     function chgName() {
-        person.value.name += '~'
+        person.name += '~'
     }
 
     function chgAge() {
-        person.value.age += 1
+        person.age += 1
     }
 </script>
 
