@@ -56,8 +56,8 @@
     //     console.log(newVal, oldVal)
     // })
 
-    // use function return & deep:true
-    watch(()=>person.car, (newVal, oldVal) => {
+    // watch for more then one property
+    watch([()=>person.name, ()=>person.car.c1], (newVal, oldVal) => {
         console.log(newVal, oldVal)
     }, {
         deep: true
