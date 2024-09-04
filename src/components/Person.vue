@@ -47,8 +47,20 @@
     }
 
     // watch for reactive which particular property is basic data type
-    watch(()=>person.name, (newVal, oldVal) => {
+    // watch(()=>person.name, (newVal, oldVal) => {
+    //     console.log(newVal, oldVal)
+    // })
+
+    // watch for whole car , no monitor
+    // watch(person.car, (newVal, oldVal) => {
+    //     console.log(newVal, oldVal)
+    // })
+
+    // use function return & deep:true
+    watch(()=>person.car, (newVal, oldVal) => {
         console.log(newVal, oldVal)
+    }, {
+        deep: true
     })
 </script>
 
