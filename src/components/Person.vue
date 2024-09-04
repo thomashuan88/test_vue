@@ -1,67 +1,44 @@
 <template>
     <div class="person">
-        <h2>name: {{ person.name }}</h2>
-        <h2>age: {{ person.age }}</h2>
-        <h2>car: {{ person.car.c1 }}, {{ person.car.c2 }}</h2>
-        <button @click="chgName">change name</button>
-        <button @click="chgAge">change age</button>
-        <button @click="chgC1">change first car</button>
-        <button @click="chgC2">change second car</button>
-        <button @click="chgCar">change car</button>
+        <h2>when temprature reach 60 °C, and level 80cm, send alert</h2>
+        <h2>current temprature: {{ temp }} °C</h2>
+        <h2>current level: {{ level }} cm</h2>
+        <button @click="chgTemp">change temprature + 10</button>
+        <button @click="chgLevel">change level + 10</button>
     </div>
 </template>
 
 <script lang="ts" setup name="Person">
-    import {reactive, watch} from 'vue'
+    import {ref, watch, watchEffect} from 'vue'
 
-    let person = reactive({
-        name: 'bob',
-        age: 20,
-        car: {
-            c1:'bmw',
-            c2:'benz'
+    let temp = ref(10)
+    let level = ref(0)
+
+    function chgTemp() {
+        temp.value += 10
+    }
+
+    function chgLevel() {
+        level.value += 10
+    }
+
+    // using watch to monitor
+    // watch([temp, level], (val) => {
+    //     let [newtemp, newheight] = val
+    //     console.log(newtemp, newheight)
+
+    //     if (newtemp >= 60 || newheight >= 80) {
+    //         alert('danger level!')
+    //     }
+    // })
+
+    watchEffect(() => {
+        console.log(temp.value, level.value)
+        if (temp.value >= 60 || level.value >= 80) {
+            alert('danger level!')
         }
     })
 
-    function chgName() {
-        person.name += '~'
-    }
-
-    function chgAge() {
-        person.age += 1
-    }
-
-    function chgC1() {
-        person.car.c1 = 'audi'
-    }
-
-    function chgC2() {
-        person.car.c2 = 'toyota'
-    }
-
-    function chgCar() {
-        person.car = {
-            c1:'toyota',
-            c2:'nissan'
-        }
-    }
-
-    // watch for reactive which particular property is basic data type
-    // watch(()=>person.name, (newVal, oldVal) => {
-    //     console.log(newVal, oldVal)
-    // })
-
-    // watch for whole car , no monitor
-    // watch(person.car, (newVal, oldVal) => {
-    //     console.log(newVal, oldVal)
-    // })
-
-    // watch for more then one property
-    watch([()=>person.name, ()=>person.car.c1], (newVal, oldVal) => {
-        console.log(newVal, oldVal)
-    }, {
-        deep: true
-    })
 </script>
 
 <style scoped>
