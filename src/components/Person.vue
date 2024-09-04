@@ -1,32 +1,13 @@
 <template>
     <div class="person">
-        ???
+        <h2>{{ a }}</h2>
     </div>
 </template>
 
 <script lang="ts" setup name="Person">
-    import type { PersonInter, Persons } from '@/types';
+    import { defineProps } from 'vue';
 
-    let person: PersonInter = {
-        id: 'asdfasdf1234213',
-        name: 'bob',
-        age: 60
-    }
-
-    let personList: Persons = [
-        {
-            id: 'asdfasdf1234213',
-            name: 'bob',
-            age: 60
-        },
-        {
-            id: 'asdfasdf1234214',
-            name: 'thomas',
-            age: 50
-        }
-    ]
-
-
+    defineProps(['a'])
 </script>
 
 <style scoped>
