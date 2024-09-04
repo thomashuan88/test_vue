@@ -1,29 +1,32 @@
 <template>
     <div class="person">
-        <h1>china</h1>
-        <h2 ref="title2">hongkong</h2>
-        <h3>taiwan</h3>
-        <button @click="showme">showme</button>
+        ???
     </div>
 </template>
 
 <script lang="ts" setup name="Person">
-    import {ref, defineExpose} from 'vue'
+    import type { PersonInter, Persons } from '@/types';
 
-    let a = ref(0)
-    let b = ref(1)
-    let c = ref(2)
-
-    // use for tag tag the html element
-    let title2 = ref(null)
-
-    function showme() {
-        console.log(title2.value.textContent)
+    let person: PersonInter = {
+        id: 'asdfasdf1234213',
+        name: 'bob',
+        age: 60
     }
 
-    defineExpose({
-        a,b,c
-    })
+    let personList: Persons = [
+        {
+            id: 'asdfasdf1234213',
+            name: 'bob',
+            age: 60
+        },
+        {
+            id: 'asdfasdf1234214',
+            name: 'thomas',
+            age: 50
+        }
+    ]
+
+
 </script>
 
 <style scoped>
