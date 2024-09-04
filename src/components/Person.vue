@@ -1,14 +1,14 @@
 <template>
     <div class="person">
-        <h2>name : {{ person.name }}</h2>
-        <h2>age : {{ person.age }}</h2>
+        <h2>name : {{ name }}</h2>
+        <h2>age : {{ age }}, nl : {{ nl }}</h2>
         <button @click="chgName">change name</button>
         <button @click="chgAge">change age</button>
     </div>
 </template>
 
 <script lang="ts" setup name="Person">
-    import {reactive, toRefs} from 'vue'
+    import {reactive, toRefs, toRef} from 'vue'
 
     // data
     let person = reactive({
@@ -18,13 +18,15 @@
 
     let {name, age} = toRefs(person)  // converto to more then one ref
 
+    let nl = toRef(person,'age')  // just extract age from person, nl => ObjectRefImpl {value: 20}
+
     // methods
     function chgName() {
-        person.name += '~'
+        name.value += '~'
     }
 
     function chgAge() {
-        person.age += 1
+        age.value += 1
     }
 </script>
 
