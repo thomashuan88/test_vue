@@ -10,8 +10,11 @@ export default defineConfig({
   plugins: [
     vue(),
     vueDevTools(),
-    VueSetupExtend()
+    // VueSetupExtend()
   ],
+  server: {
+    host: '0.0.0.0'
+  },
   resolve: {
     alias: {
       '@': fileURLToPath(new URL('./src', import.meta.url))

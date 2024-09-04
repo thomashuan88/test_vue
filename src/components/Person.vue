@@ -2,40 +2,37 @@
     <div class="person">
         <h2>A {{ car.brand }} car, price is {{ car.price }}</h2>
         <button @click="chgPrice">change car price</button>
-        <h2>Game List:</h2>
-        <ul>
-            <li v-for="game in games" :key="game.id">{{ game.id }} - {{ game.name }}</li>
-        </ul>
-        <button @click="chgFirstGame">change firstgame</button>
+        <button @click="chgCar">change car</button>
+        <hr>
+        <h2>sum: {{ sum }}</h2>
+        <button @click="addSum">click me + 1</button>
     </div>
 </template>
 
 <script lang="ts" setup name="Person">
-    import {ref} from 'vue'
+    import {ref, reactive} from 'vue'
 
-    let car = ref({
+    let car = reactive({
         brand: 'bmw',
         price: 100
     })
 
-    let games = ref([
-        {
-            id: 'gg1',
-            name: 'lol',
-        },
-        {
-            id: 'gg2',
-            name: 'lol2',
-        }
-    ])
+    let sum = ref(0)
 
     function chgPrice() {
-        car.value.price += 10
+        car.price += 10
     }
 
-    function chgFirstGame() {
-        games.value[0].name = 'dota2'
+    function chgCar() {
+        // car = {brand:'benz', price:10} ** no change
+        // car = reactive({brand:'benz', price:10})  ** no change
+        Object.assign(car, {brand: 'benz', price: 10})
     }
+
+    function addSum() {
+        sum.value += 1
+    }
+
 </script>
 
 <style scoped>
