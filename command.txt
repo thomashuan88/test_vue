@@ -64,3 +64,5 @@ let fullName = computed({
 4. an array which content 1,2,3 above
 
 
+-- getter function means this function can return a value
+

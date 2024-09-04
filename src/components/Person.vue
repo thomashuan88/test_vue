@@ -1,11 +1,13 @@
 <template>
     <div class="person">
-        <h1>scene 3: monitor reactive object data type</h1>
         <h2>name: {{ person.name }}</h2>
         <h2>age: {{ person.age }}</h2>
+        <h2>car: {{ person.car.c1 }}, {{ person.car.c2 }}</h2>
         <button @click="chgName">change name</button>
         <button @click="chgAge">change age</button>
-        <button @click="chgPerson">change person</button>
+        <button @click="chgC1">change first car</button>
+        <button @click="chgC2">change second car</button>
+        <button @click="chgCar">change car</button>
     </div>
 </template>
 
@@ -14,7 +16,11 @@
 
     let person = reactive({
         name: 'bob',
-        age: 20
+        age: 20,
+        car: {
+            c1:'bmw',
+            c2:'benz'
+        }
     })
 
     function chgName() {
@@ -25,16 +31,23 @@
         person.age += 1
     }
 
-    function chgPerson() {
-
-        Object.assign(person, {
-            name: 'jack',
-            age: 30
-        })
+    function chgC1() {
+        person.car.c1 = 'audi'
     }
 
-    // watch for reactive default deep is true
-    watch(person, (newVal, oldVal) => {
+    function chgC2() {
+        person.car.c2 = 'toyota'
+    }
+
+    function chgCar() {
+        person.car = {
+            c1:'toyota',
+            c2:'nissan'
+        }
+    }
+
+    // watch for reactive which particular property is basic data type
+    watch(()=>person.name, (newVal, oldVal) => {
         console.log(newVal, oldVal)
     })
 </script>
