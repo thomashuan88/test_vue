@@ -88,3 +88,8 @@ lifecycle vue3
 -- onBeforeUnmount, onUnmounted
 
 frequence use -- onMounted, onUpdated, onBeforeUnmount
+
+-- vue3 use hooks to put data & methods together
+
+-- install router
+npm i vue-router
