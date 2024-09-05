@@ -8,7 +8,6 @@
 
 <script lang="ts" setup name="Person">
     import type { Persons } from '@/types';
-    import { withDefaults } from 'vue';
 
     // defineExpose & defindProps no need import
     // defineExpose({a,b,c}) // export a,b,c
