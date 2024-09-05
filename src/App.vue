@@ -1,5 +1,5 @@
 <template>
-    <Person a="haha"/>
+    <Person :list="personList"/>
 </template>
 
 <script lang="ts" setup name="App">

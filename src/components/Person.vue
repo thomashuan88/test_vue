@@ -1,13 +1,34 @@
 <template>
     <div class="person">
-        <h2>{{ a }}</h2>
+        <ul>
+            <li v-for="item in list" :key="item.id">{{ item.name }} -- {{ item.age }} -- {{ item.id }}</li>
+        </ul>
     </div>
 </template>
 
 <script lang="ts" setup name="Person">
-    import { defineProps } from 'vue';
+    import type { Persons } from '@/types';
+    import { withDefaults } from 'vue';
 
-    defineProps(['a'])
+    // defineExpose & defindProps no need import
+    // defineExpose({a,b,c}) // export a,b,c
+
+    // just receive list
+    // defineProps(['list'])
+    
+    // accept list and control the types
+    // defineProps<{list: Persons}>()
+
+    // accept list + control the types + list? (optional) + have default value
+    withDefaults(defineProps<{list?: Persons}>(), {
+        list: ()=>[{id: 'a001', name: 'bob', age: 20}]
+    })
+
+
+
+    // receive list and keep the props
+    // let x = defineProps(['list'])
+    // console.log(x.list)
 </script>
 
 <style scoped>

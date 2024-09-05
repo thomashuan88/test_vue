@@ -67,3 +67,10 @@ let fullName = computed({
 -- getter function means this function can return a value
 
 <style scoped> those css just use at current vue file
+
+let x = defineProps(['a','b'])
+console.log(x)
+Proxy(Object) {a:'haha', b:'hehe'}
+
+<h2 a="1+1" :b="1+1" c="x" :d="x">haha</h2> :: let x = 9
+<h2 a="1+1" b="2" c="x" d="9">haha</h2>
