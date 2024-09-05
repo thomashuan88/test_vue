@@ -1,33 +1,46 @@
 <template>
     <div class="person">
-        <ul>
-            <li v-for="item in list" :key="item.id">{{ item.name }} -- {{ item.age }} -- {{ item.id }}</li>
-        </ul>
+        <h2>sum : {{ sum }}</h2>
+        <button @click="addSum">chickme</button>
     </div>
 </template>
 
 <script lang="ts" setup name="Person">
-    import type { Persons } from '@/types';
+    import {ref, onBeforeMount, onMounted, onBeforeUpdate, onUpdated, onBeforeUnmount, onUnmounted} from 'vue'
 
-    // defineExpose & defindProps no need import
-    // defineExpose({a,b,c}) // export a,b,c
+    let sum = ref(0)
 
-    // just receive list
-    // defineProps(['list'])
-    
-    // accept list and control the types
-    // defineProps<{list: Persons}>()
+    function addSum() {
+        sum.value += 1
+    }
 
-    // accept list + control the types + list? (optional) + have default value
-    withDefaults(defineProps<{list?: Persons}>(), {
-        list: ()=>[{id: 'a001', name: 'bob', age: 20}]
+    console.log('created')
+
+    onBeforeMount(() => {
+        console.log('onBeforeMount')
+    })
+
+    onMounted(() => {
+        console.log('onMounted')
+    })
+
+    onBeforeUpdate(() => {
+        console.log('onBeforeUpdate')
+    })
+
+    onUpdated(() => {
+        console.log('onUpdated')
+    })
+
+    onBeforeUnmount(() => {
+        console.log('onBeforeUnmount')
+    })
+
+    onUnmounted(() => {
+        console.log('onUnmounted')
     })
 
 
-
-    // receive list and keep the props
-    // let x = defineProps(['list'])
-    // console.log(x.list)
 </script>
 
 <style scoped>

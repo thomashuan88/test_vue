@@ -80,3 +80,11 @@ lifecycle vue2
 -- beforeMount, mounted
 -- beforeUpdate, updated
 -- beforeDestroy, destroyed
+
+lifecycle vue3
+-- setup
+-- onBeforeMount, onMounted
+-- onBeforeUpdate, onUpdated
+-- onBeforeUnmount, onUnmounted
+
+frequence use -- onMounted, onUpdated, onBeforeUnmount
