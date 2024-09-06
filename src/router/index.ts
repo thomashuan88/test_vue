@@ -1,6 +1,8 @@
 // create a router and export it
 import { createRouter, createWebHistory } from 'vue-router'
 import { login } from '@/utils/auth';
+import Profile from '@/components/Profile.vue'
+import Login from '@/components/Login.vue'
 // import Home from '@/components/Home.vue'
 // import News from '@/components/News.vue'
 // import About from '@/components/About.vue'
