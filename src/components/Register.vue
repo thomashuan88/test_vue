@@ -1,5 +1,5 @@
 <template>
-<div class="form-container">
+<div class="form-container"  :class="{'hidden': !showFirstStep}">
     <div class="form-row">
     <div class="form-group">
         <i class="fas fa-id-card fa-sm" style="padding-right: 5px;"></i>
@@ -138,7 +138,7 @@ library.add(faEye, faEyeSlash);
 
 let showPassword = ref(false)
 let showNextStep = ref(false);
-
+let showFirstStep = ref(true);
 interface Form {
   name: string;
   surname: string;
@@ -213,6 +213,7 @@ const validateForm = () => {
     reenterPassword.trim() !== '' &&
     password === reenterPassword
   ) {
+    showFirstStep.value = false;
     showNextStep.value = true;
   } else {
     alert('Please fill in all required fields and ensure password matches');
