@@ -1,7 +1,7 @@
 <template>
-    <Temp />
+    <Register />
 </template>
 
 <script lang="ts" setup name="App">
-    import Temp from './components/Temp.vue'
+    import Register from './components/Register.vue'
 </script>
