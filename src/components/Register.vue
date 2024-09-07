@@ -60,25 +60,37 @@
     </div>
     <button class="next-step-button" @click="validateForm">GO TO NEXT STEP</button>
 </div>
-<div class="form-container-last"  :class="{ hidden: !showNextStep }">
+<div class="form-container-last" :class="{'hidden': !showNextStep}">
   <div class="form-row">
     <div class="form-group">
       <i class="fas fa-id-card icon"></i>
-      <input type="text" placeholder="Identification Number" />
+      <input type="text" placeholder="Identification Number"  v-model="form.idnumber"  @blur="validateField('idnumber')" />
+      <div v-if="v$.idnumber.$error" class="error-message">
+          {{ v$.idnumber.$errors[0].$message }}
+      </div>
     </div>
     <div class="form-group">
       <i class="fas fa-mobile-alt icon"></i>
-      <input type="tel" placeholder="05 Telephone"/>
+      <input type="tel" placeholder="05 Telephone"  v-model="form.telephone"  @blur="validateField('telephone')" />
+      <div v-if="v$.telephone.$error" class="error-message">
+          {{ v$.telephone.$errors[0].$message }}
+      </div>
     </div>
   </div>
   <div class="form-row">
     <div class="form-group">
       <i class="fas fa-shield-alt icon"></i>
-      <input type="text" placeholder="Security Question" />
+      <input type="text" placeholder="Security Question"  v-model="form.secu_quest"  @blur="validateField('secu_quest')" />
+      <div v-if="v$.secu_quest.$error" class="error-message">
+          {{ v$.secu_quest.$errors[0].$message }}
+        </div>
     </div>
     <div class="form-group">
       <i class="fas fa-shield-alt icon"></i>
-      <input type="text" placeholder="Security answer" />
+      <input type="text" placeholder="Security answer"  v-model="form.secu_ans"  @blur="validateField('secu_ans')" />
+      <div v-if="v$.secu_ans.$error" class="error-message">
+          {{ v$.secu_ans.$errors[0].$message }}
+      </div>
     </div>
   </div>
 
@@ -87,28 +99,30 @@
     <div class="menu-options">
       <label>
         <span>Activate login via email</span>
-        <input type="radio" name="loginOption" value="email" checked />
+        <input type="radio" name="loginOption" value="email" v-model="form.login_opt" />
       </label>
       <label>
         <span>Activate login via SMS</span>
-        <input type="radio" name="loginOption" value="sms" />
+        <input type="radio" name="loginOption" value="sms" v-model="form.login_opt" />
       </label>
       <label>
         <span>Disable all</span>
-        <input type="radio" name="loginOption" value="disable" />
+        <input type="radio" name="loginOption" value="disable" v-model="form.login_opt" />
       </label>
     </div>
   </div>
 
   <div class="terms">
-    <input type="checkbox" id="terms-checkbox">
+    <input type="checkbox" id="terms-checkbox"   v-model="form.terms"  @blur="validateField('terms')" >
     <label for="terms-checkbox"></label>
     <span>I HAVE READ AND ACCEPT THE GENERAL TERMS AND CONDITIONS</span>
   </div>
 
-  <button class="register-button">
+  <button class="register-button" @click="submitForm">
     <i class="fas fa-user-plus"></i> REGISTER NOW
   </button>
+
+
 </div>
 </template>
   
@@ -132,6 +146,12 @@ interface Form {
   email: string;
   password: string;
   reenterPassword: string;
+  idnumber: string;
+  telephone: string;
+  secu_quest: string;
+  secu_ans: string;
+  terms: boolean;
+  login_opt: 'email' | 'sms' | 'disable';
 }
 
 const form = reactive<Form>({
@@ -140,7 +160,13 @@ const form = reactive<Form>({
   username: '',
   email: '',
   password: '',
-  reenterPassword: ''
+  reenterPassword: '',
+  idnumber: '',
+  telephone: '',
+  secu_quest: '',
+  secu_ans: '',
+  terms: false,
+  login_opt: 'email'
 });
 
 const rules = {
@@ -149,7 +175,13 @@ const rules = {
   username: { required, minLength: minLength(3) },
   email: { required, email },
   password: { required, minLength: minLength(8) },
-  reenterPassword: { required, sameAs: (value: string) => value === form.password }
+  reenterPassword: { required, sameAs: (value: string) => value === form.password },
+  idnumber: { required },
+  telephone: { required },
+  secu_quest: { required },
+  secu_ans: { required },
+  terms: { required, sameAs: (value: boolean) => value === true },
+  login_opt: { required }
 };
 
 const v$ = useVuelidate(rules, form);
@@ -163,7 +195,7 @@ async function submitForm() {
   if (!isFormValid) return;
 
   // Form is valid, proceed with submission
-  console.log('Form submitted');
+  console.log(form);
 }
 
 function togglePasswordVisibility() {
